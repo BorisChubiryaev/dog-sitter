@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dog Sitter — варианты дизайна сайта</title>
+<meta name="description" content="Выберите вариант дизайна сайта для компании по выгулу собак. С заботой о ваших собаках.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Unbounded:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Manrope", system-ui, sans-serif; color: #1f2430; background: #fbf4ea; }
+  .wrap { width: min(1080px, 92vw); margin: 0 auto; }
+  header { text-align: center; padding: 70px 0 30px; }
+  .paw { font-size: 50px; }
+  h1 { font-family: "Unbounded", sans-serif; font-size: clamp(28px, 5vw, 48px); margin: 14px 0 10px; letter-spacing: -.02em; }
+  .slogan { color: #c9784a; font-weight: 700; font-size: 18px; margin: 0; }
+  .lead { max-width: 60ch; margin: 22px auto 0; color: #6b6258; line-height: 1.6; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 26px; padding: 40px 0 30px; }
+  .v-card { background: #fff; border-radius: 22px; overflow: hidden; box-shadow: 0 24px 60px -30px rgba(80,50,20,.5); text-decoration: none; color: inherit; display: flex; flex-direction: column; transition: transform .2s, box-shadow .2s; border: 1px solid #f0e6d8; }
+  .v-card:hover { transform: translateY(-6px); box-shadow: 0 34px 70px -28px rgba(80,50,20,.55); }
+  .v-preview { height: 180px; position: relative; display: grid; place-items: center; color: #fff; font-family: "Unbounded", sans-serif; font-size: 26px; text-align: center; padding: 16px; }
+  .v-comic { background: #ffcb05; color: #1a1a1a; background-image: radial-gradient(#ff5a5f 2px, transparent 2px); background-size: 20px 20px; }
+  .v-comic span { background: #1a1a1a; color:#fff; padding: 6px 16px; border-radius: 12px; box-shadow: 4px 4px 0 #ff5a5f; }
+  .v-modern { background: linear-gradient(135deg, #ff8a4c, #2dd4bf); }
+  .v-cozy { background: linear-gradient(135deg, #c9784a, #7a9e7e); }
+  .v-body { padding: 22px 24px 26px; flex: 1; display: flex; flex-direction: column; }
+  .v-body h2 { margin: 0 0 8px; font-size: 22px; }
+  .v-body p { margin: 0 0 18px; color: #6b6258; line-height: 1.55; font-size: 15px; flex: 1; }
+  .swatches { display: flex; gap: 8px; margin-bottom: 16px; }
+  .swatches i { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px #eadfd0; }
+  .open { display: inline-block; background: #1f2430; color: #fff; font-weight: 700; padding: 12px 22px; border-radius: 999px; text-align: center; }
+  .note { background: #fff; border: 1px solid #f0e6d8; border-radius: 18px; padding: 24px 26px; margin: 14px 0 70px; color: #6b6258; line-height: 1.65; }
+  .note b { color: #1f2430; }
+  footer { text-align: center; padding: 0 0 50px; color: #9a8d7e; }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="paw">🐾</div>
+      <h1>Dog Sitter — варианты сайта</h1>
+      <p class="slogan">С заботой о ваших собаках</p>
+      <p class="lead">Три разных стиля одного сайта. Откройте каждый, сравните и выберите подходящий.
+      На любом варианте есть кнопка-шестерёнка ⚙ — через неё можно прямо в браузере менять тексты,
+      цены, телефон, цвета и прятать разделы. Сверху можно мгновенно переключаться между стилями.</p>
+    </header>
+
+    <div class="grid">
+      <a class="v-card" href="variants/comic/">
+        <div class="v-preview v-comic"><span>КОМИКС</span></div>
+        <div class="v-body">
+          <h2>Комиксовый</h2>
+          <p>Яркий, дружелюбный поп-арт: жирные обводки, баблы-реплики, халфтон. Привлекает внимание, отлично для соцсетей.</p>
+          <div class="swatches"><i style="background:#ffcb05"></i><i style="background:#ff5a5f"></i><i style="background:#1a1a1a"></i></div>
+          <span class="open">Открыть →</span>
+        </div>
+      </a>
+
+      <a class="v-card" href="variants/modern/">
+        <div class="v-preview v-modern">Современный</div>
+        <div class="v-body">
+          <h2>Современный</h2>
+          <p>Чистый минимализм, много воздуха, мягкие тени и скруглённые карточки. Строго и аккуратно.</p>
+          <div class="swatches"><i style="background:#ff8a4c"></i><i style="background:#2dd4bf"></i><i style="background:#1f2430"></i></div>
+          <span class="open">Открыть →</span>
+        </div>
+      </a>
+
+      <a class="v-card" href="variants/cozy/">
+        <div class="v-preview v-cozy">Уютный</div>
+        <div class="v-body">
+          <h2>Уютный</h2>
+          <p>Тёплая карамельно-бежевая палитра, мягкий серифный шрифт, домашняя ламповая атмосфера и забота.</p>
+          <div class="swatches"><i style="background:#c9784a"></i><i style="background:#7a9e7e"></i><i style="background:#fbf4ea"></i></div>
+          <span class="open">Открыть →</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="note">
+      <p style="margin-top:0"><b>Как настроить под себя:</b> откройте любой вариант → нажмите ⚙ справа внизу.
+      Можно поменять название, слоган, телефон, ссылки на соцсети, цвета и спрятать ненужные разделы.
+      Изменения сохраняются в вашем браузере. Кнопка «Скачать настройки» сохранит файл, который можно
+      прислать разработчику, чтобы зафиксировать правки навсегда.</p>
+      <p style="margin-bottom:0"><b>Фотографии:</b> сейчас стоят заглушки с подписью «вставьте фото».
+      Когда будет папка с фото — их легко подставить (см. файл <b>content.js</b> и README).</p>
+    </div>
+
+    <footer>📍 Нижний Новгород · +7 904 049 14 82</footer>
+  </div>
+</body>
+</html>

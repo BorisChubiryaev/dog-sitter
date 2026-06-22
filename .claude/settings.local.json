@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:vk.ru)",
+      "WebFetch(domain:www.instagram.com)",
+      "WebFetch(domain:m.vk.ru)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(git add *)",
+      "Bash(git commit -q -m 'Сайт Dog Sitter: 3 варианта дизайна + панель настроек *)",
+      "Bash(gh auth *)",
+      "Bash(gh api *)"
+    ]
+  }
+}

@@ -1,0 +1,127 @@
+/* =====================================================================
+   БАЗОВЫЕ СТИЛИ — общие для всех вариантов дизайна
+   (сброс, панель настроек ⚙, слоты под фото, утилиты)
+   ===================================================================== */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--c-text, #2b2b2b);
+  background: var(--c-bg, #fff);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+button { font: inherit; cursor: pointer; }
+.container { width: min(1140px, 92vw); margin-inline: auto; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ---------- СЛОТ ПОД ФОТО ----------
+   Если в content.js у элемента не задано фото (img: ""),
+   показывается красивая заглушка с подписью. */
+.photo-slot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #fff;
+  background:
+    linear-gradient(135deg,
+      color-mix(in srgb, var(--c-primary, #ff9f43) 80%, #000 0%),
+      var(--c-accent, #5f27cd));
+  overflow: hidden;
+}
+.photo-slot::after {
+  content: attr(data-label);
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  background: rgba(0,0,0,.35);
+  letter-spacing: .02em;
+}
+.photo-slot .paw { font-size: clamp(36px, 8vw, 72px); opacity: .9; }
+.photo-img { width: 100%; height: 100%; object-fit: cover; }
+
+/* =====================================================================
+   ПАНЕЛЬ НАСТРОЕК ⚙
+   ===================================================================== */
+.cz-fab {
+  position: fixed; right: 18px; bottom: 18px; z-index: 9998;
+  width: 56px; height: 56px; border-radius: 50%;
+  border: none; color: #fff; font-size: 24px; line-height: 1;
+  background: var(--c-accent, #5f27cd);
+  box-shadow: 0 8px 24px rgba(0,0,0,.25);
+  transition: transform .2s ease;
+}
+.cz-fab:hover { transform: rotate(40deg) scale(1.06); }
+
+.cz-panel {
+  position: fixed; top: 0; right: 0; z-index: 9999;
+  width: min(380px, 100vw); height: 100vh;
+  background: #fff; color: #222;
+  box-shadow: -12px 0 40px rgba(0,0,0,.2);
+  transform: translateX(105%);
+  transition: transform .28s ease;
+  display: flex; flex-direction: column;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.cz-panel.open { transform: translateX(0); }
+.cz-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 18px; border-bottom: 1px solid #eee;
+}
+.cz-head h2 { margin: 0; font-size: 17px; }
+.cz-close { background: none; border: none; font-size: 22px; color: #888; }
+.cz-body { padding: 14px 18px; overflow-y: auto; flex: 1; }
+.cz-group { margin-bottom: 18px; }
+.cz-group > h3 {
+  margin: 0 0 8px; font-size: 12px; text-transform: uppercase;
+  letter-spacing: .06em; color: #999;
+}
+.cz-field { margin-bottom: 10px; }
+.cz-field label { display: block; font-size: 12px; color: #666; margin-bottom: 3px; }
+.cz-field input[type=text],
+.cz-field textarea {
+  width: 100%; padding: 8px 10px; border: 1px solid #ddd; border-radius: 8px;
+  font-size: 13px; font-family: inherit; resize: vertical;
+}
+.cz-field input:focus, .cz-field textarea:focus { outline: 2px solid var(--c-accent, #5f27cd); border-color: transparent; }
+.cz-colors { display: flex; gap: 10px; flex-wrap: wrap; }
+.cz-color { display: flex; flex-direction: column; align-items: center; font-size: 11px; color: #666; gap: 4px; }
+.cz-color input[type=color] { width: 42px; height: 34px; border: 1px solid #ddd; border-radius: 8px; padding: 2px; background: #fff; }
+.cz-toggle { display: flex; align-items: center; justify-content: space-between; padding: 7px 0; border-bottom: 1px dashed #eee; }
+.cz-toggle span { font-size: 13px; }
+.cz-switch { position: relative; width: 42px; height: 24px; }
+.cz-switch input { opacity: 0; width: 0; height: 0; }
+.cz-slider { position: absolute; inset: 0; background: #ccc; border-radius: 999px; transition: .2s; }
+.cz-slider::before { content: ""; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .2s; }
+.cz-switch input:checked + .cz-slider { background: var(--c-accent, #5f27cd); }
+.cz-switch input:checked + .cz-slider::before { transform: translateX(18px); }
+.cz-foot { padding: 14px 18px; border-top: 1px solid #eee; display: flex; gap: 8px; flex-wrap: wrap; }
+.cz-btn { flex: 1; min-width: 120px; padding: 10px; border-radius: 9px; border: none; font-size: 13px; font-weight: 600; }
+.cz-btn.primary { background: var(--c-accent, #5f27cd); color: #fff; }
+.cz-btn.ghost { background: #f1f1f1; color: #444; }
+.cz-hint { font-size: 11px; color: #999; padding: 0 18px 12px; }
+
+/* Лента переключения вариантов дизайна (общая) */
+.variant-bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 9990;
+  display: flex; gap: 8px; align-items: center; justify-content: center;
+  padding: 7px 12px; font-size: 12px;
+  background: rgba(20,20,20,.86); color: #fff; backdrop-filter: blur(6px);
+  font-family: system-ui, sans-serif;
+}
+.variant-bar a, .variant-bar span.label { color: #fff; text-decoration: none; opacity: .75; padding: 3px 10px; border-radius: 999px; }
+.variant-bar a:hover { opacity: 1; background: rgba(255,255,255,.12); }
+.variant-bar a.active { opacity: 1; background: #fff; color: #111; font-weight: 700; }
+.variant-bar span.label { opacity: .55; }
+body.has-variant-bar { padding-top: 38px; }
+@media (max-width: 560px){ .variant-bar { font-size: 11px; gap: 2px; } }

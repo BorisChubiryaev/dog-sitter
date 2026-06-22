@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dog Sitter — Комиксовый вариант</title>
+<meta name="description" content="Выгул, передержка и догняня. С заботой о ваших собаках. Нижний Новгород.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Шрифты: Russo One + Caveat (с поддержкой кириллицы). Один из шрифтов
+     бренда — Comic CAT; чтобы подключить его, добавьте файл шрифта и
+     замените семейство в style.css. -->
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Caveat:wght@500;700&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="site">
+
+  <!-- ШАПКА -->
+  <header class="nav">
+    <a class="brand" href="#top">
+      <span class="brand-paw">🐾</span>
+      <span class="brand-name" data-text="brand.name">Dog Sitter</span>
+    </a>
+    <nav class="nav-links">
+      <a href="#services">Услуги</a>
+      <a href="#care">Стандарт заботы</a>
+      <a href="#academy">Академия</a>
+      <a href="#useful">Полезное</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a class="nav-phone" data-text="brand.phone" data-tel="brand.phone" href="#">Телефон</a>
+  </header>
+
+  <!-- ГЛАВНЫЙ ЭКРАН -->
+  <section class="hero" id="top">
+    <div class="halftone"></div>
+    <div class="hero-grid container">
+      <div class="hero-text">
+        <div class="badge">ВЫГУЛ · ПЕРЕДЕРЖКА · ДОГНЯНЯ</div>
+        <h1 class="hero-title" data-text="hero.title">С заботой о ваших собаках</h1>
+        <p class="hero-sub" data-text="hero.subtitle"></p>
+        <div class="hero-btns">
+          <a class="btn btn-pop" data-href="links.form" data-text="hero.primaryButton" href="#">Оставить заявку</a>
+          <a class="btn btn-outline" href="#services" data-text="hero.secondaryButton">Наши услуги</a>
+        </div>
+        <p class="hero-city">📍 <span data-text="brand.city">Нижний Новгород</span></p>
+      </div>
+      <div class="hero-photo">
+        <div class="bubble bubble-1">Гав!</div>
+        <div class="photo-frame" data-photo="hero.img" data-label="Главное фото — вставьте сюда"></div>
+        <div class="bubble bubble-2">С заботой 💛</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- УСЛУГИ -->
+  <section class="section services" id="services" data-section="services">
+    <div class="container">
+      <h2 class="sec-title" data-text="servicesTitle">Услуги</h2>
+      <div class="cards" data-repeat="services">
+        <template>
+          <article class="card">
+            <div class="card-icon" data-text="icon">🦮</div>
+            <h3 class="card-name" data-text="name">Услуга</h3>
+            <div class="price-tag" data-text="price">Цена</div>
+            <div class="price-note" data-text="priceNote"></div>
+            <div class="price-extra" data-text="extraPrice"></div>
+            <div class="price-note" data-text="extraNote"></div>
+            <ul class="card-points" data-repeat="points">
+              <template><li data-text=".">пункт</li></template>
+            </ul>
+            <div class="card-warn" data-text="note"></div>
+          </article>
+        </template>
+      </div>
+      <p class="services-note" data-text="servicesNote"></p>
+    </div>
+  </section>
+
+  <!-- ПОРЯДОК ПЕРЕДЕРЖКИ -->
+  <section class="section steps" data-section="services">
+    <div class="container steps-grid">
+      <div>
+        <h2 class="sec-title" data-text="steps.title">Как проходит передержка</h2>
+        <ol class="steps-list" data-repeat="steps.items">
+          <template><li data-text=".">шаг</li></template>
+        </ol>
+      </div>
+      <div class="bring">
+        <h3 data-text="steps.bring.title">Что взять с собой</h3>
+        <ul class="bring-list" data-repeat="steps.bring.items">
+          <template><li data-text=".">вещь</li></template>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- СТАНДАРТ ЗАБОТЫ -->
+  <section class="section care" id="care" data-section="care">
+    <div class="container">
+      <h2 class="sec-title" data-text="careSubtitle">Почему нам доверяют</h2>
+      <p class="sec-lead" data-text="careTitle">Стандарт заботы</p>
+      <div class="care-grid" data-repeat="care">
+        <template>
+          <div class="care-item">
+            <div class="care-icon" data-text="icon">❤️</div>
+            <h4 data-text="title">Заголовок</h4>
+            <p data-text="text">Текст</p>
+          </div>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- АКАДЕМИЯ -->
+  <section class="section academy" id="academy" data-section="academy">
+    <div class="container academy-box">
+      <div class="academy-badge" data-text="academy.badge">Скоро</div>
+      <h2 class="sec-title" data-text="academy.title">Внутренняя академия</h2>
+      <p class="sec-lead" data-text="academy.subtitle">Обучение ситтеров</p>
+      <p class="academy-text" data-text="academy.text"></p>
+      <a class="btn btn-pop" data-href="links.form" data-text="academy.button" href="#">Хочу в команду</a>
+    </div>
+  </section>
+
+  <!-- ПОЛЕЗНОЕ / ЧЕК-ЛИСТ -->
+  <section class="section useful" id="useful" data-section="useful">
+    <div class="container useful-grid">
+      <div>
+        <h2 class="sec-title" data-text="useful.title">Полезное</h2>
+        <p class="sec-lead" data-text="useful.subtitle">Чек-лист для владельца</p>
+        <a class="btn btn-outline" data-href="links.form" data-text="useful.button" href="#">Скачать чек-лист</a>
+      </div>
+      <ul class="check-list" data-repeat="useful.items">
+        <template><li data-text=".">пункт</li></template>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ОТЗЫВЫ -->
+  <section class="section reviews" id="reviews" data-section="reviews">
+    <div class="container">
+      <h2 class="sec-title" data-text="reviewsTitle">Отзывы</h2>
+      <div class="reviews-grid" data-repeat="reviews">
+        <template>
+          <figure class="review">
+            <blockquote data-text="text">Отзыв</blockquote>
+            <figcaption><span class="review-paw">🐶</span> <span data-text="name">Имя</span></figcaption>
+          </figure>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ / ПОДВАЛ -->
+  <footer class="footer" id="contacts">
+    <div class="container">
+      <h2 class="footer-cta" data-text="footer.cta">Готовы доверить нам питомца?</h2>
+      <a class="btn btn-pop btn-big" data-href="links.form" data-text="footer.button" href="#">Связаться</a>
+      <div class="socials">
+        <a data-href="links.vk" href="#" aria-label="ВКонтакте">ВК</a>
+        <a data-href="links.telegram" href="#" aria-label="Telegram">Telegram</a>
+        <a data-href="links.instagram" href="#" aria-label="Instagram">Instagram</a>
+        <a data-text="brand.phone" data-tel="brand.phone" href="#">Телефон</a>
+      </div>
+      <p class="footer-slogan" data-text="brand.slogan">С заботой о ваших собаках</p>
+      <p class="footer-city" data-text="brand.city">Нижний Новгород</p>
+    </div>
+  </footer>
+
+</div>
+
+<script src="../../assets/js/content.js"></script>
+<script src="../../assets/js/bind.js"></script>
+<script src="../../assets/js/customizer.js"></script>
+<script>
+  window.renderSite = function (content) {
+    DSBind.render(content, document.getElementById("site"));
+  };
+  Customizer.init("comic");
+</script>
+</body>
+</html>
