@@ -8,7 +8,18 @@
       "Bash(git add *)",
       "Bash(git commit -q -m 'Сайт Dog Sitter: 3 варианта дизайна + панель настроек *)",
       "Bash(gh auth *)",
-      "Bash(gh api *)"
+      "Bash(gh api *)",
+      "WebSearch",
+      "Read(//private/tmp/**)",
+      "Bash(curl -sL -A \"Mozilla/5.0\" --max-time 25 \"https://font.download/font/comic-cat\" -o page.html -w \"http=%{http_code}\\\\n\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" -e \"https://fontesk.com/comic-cat-font/\" --max-time 40 -o cc.zip \"https://fontesk.com/download/156998/\" -w \"http=%{http_code} type=%{content_type} size=%{size_download}\\\\n\")",
+      "Bash(unzip -l cc.zip)",
+      "Bash(curl -sL -A \"Mozilla/5.0\" --max-time 25 \"https://api.github.com/search/code?q=ComicCAT+extension:otf\" -H \"Accept: application/vnd.github+json\")",
+      "Bash(curl -sL --max-time 25 \"https://api.github.com/search/repositories?q=comic+cat+font\")",
+      "Bash(curl -sL -A \"Mozilla/5.0\" -e \"https://www.fontmirror.com/comiccat\" --max-time 40 -o ComicCAT.otf \"https://www.fontmirror.com/app_public/files/t/1/2021/06/Comic_CAT.otf\" -w \"http=%{http_code} type=%{content_type} size=%{size_download}\\\\n\")",
+      "Bash(python3 -c \"import fontTools; print\\('fonttools', fontTools.version\\)\")",
+      "Bash(python3 -c \"import brotli; print\\('brotli ok'\\)\")",
+      "Bash(git commit -q -m 'Шрифт Comic CAT + фирменная пастельная палитра комикс-варианта *)"
     ]
   }
 }
