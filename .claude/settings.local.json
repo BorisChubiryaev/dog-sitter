@@ -19,7 +19,8 @@
       "Bash(curl -sL -A \"Mozilla/5.0\" -e \"https://www.fontmirror.com/comiccat\" --max-time 40 -o ComicCAT.otf \"https://www.fontmirror.com/app_public/files/t/1/2021/06/Comic_CAT.otf\" -w \"http=%{http_code} type=%{content_type} size=%{size_download}\\\\n\")",
       "Bash(python3 -c \"import fontTools; print\\('fonttools', fontTools.version\\)\")",
       "Bash(python3 -c \"import brotli; print\\('brotli ok'\\)\")",
-      "Bash(git commit -q -m 'Шрифт Comic CAT + фирменная пастельная палитра комикс-варианта *)"
+      "Bash(git commit -q -m 'Шрифт Comic CAT + фирменная пастельная палитра комикс-варианта *)",
+      "Bash(git commit -q -m 'README: отметить, что Comic CAT и фирменные цвета уже подключены *)"
     ]
   }
 }
