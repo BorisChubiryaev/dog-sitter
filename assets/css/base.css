@@ -110,6 +110,18 @@ button { font: inherit; cursor: pointer; }
 .cz-btn.primary { background: var(--c-accent, #5f27cd); color: #fff; }
 .cz-btn.ghost { background: #f1f1f1; color: #444; }
 .cz-hint { font-size: 11px; color: #999; padding: 0 18px 12px; }
+.cz-mini { font-size: 11px; color: #999; margin: 8px 0 0; line-height: 1.4; }
+
+/* Режим редактирования текста на странице */
+[contenteditable="true"].cz-editing {
+  outline: 2px dashed var(--c-accent, #5f27cd);
+  outline-offset: 3px;
+  border-radius: 4px;
+  cursor: text;
+  transition: background .15s;
+}
+[contenteditable="true"].cz-editing:hover { background: rgba(0,0,0,.04); }
+[contenteditable="true"].cz-editing:focus { background: rgba(0,0,0,.05); }
 
 /* Лента переключения вариантов дизайна (общая) */
 .variant-bar {

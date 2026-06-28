@@ -32,10 +32,18 @@
            '<span class="paw">🐾</span></div>';
   }
 
-  function applyTo(node, ctx) {
+  // Склеивает базовый путь и относительный (".": сам элемент списка)
+  function joinPath(base, rel) {
+    if (rel === "." || rel === "") return base;
+    return base ? base + "." + rel : rel;
+  }
+
+  function applyTo(node, ctx, base) {
     var v;
     if (node.hasAttribute("data-text")) {
       node.textContent = getPath(ctx, node.getAttribute("data-text")) || "";
+      // полный путь — чтобы режим редактирования знал, что куда сохранять
+      node.setAttribute("data-fullpath", joinPath(base, node.getAttribute("data-text")));
     }
     if (node.hasAttribute("data-html")) {
       node.innerHTML = getPath(ctx, node.getAttribute("data-html")) || "";
@@ -58,28 +66,30 @@
     }
   }
 
-  function processRepeat(node, ctx) {
-    var arr = getPath(ctx, node.getAttribute("data-repeat")) || [];
+  function processRepeat(node, ctx, base) {
+    var relPath = node.getAttribute("data-repeat");
+    var arr = getPath(ctx, relPath) || [];
+    var itemsBase = joinPath(base, relPath);
     var tpl = node.querySelector("template");
     if (!tpl) return;
     (node.__rendered || []).forEach(function (n) { if (n.parentNode) n.parentNode.removeChild(n); });
     node.__rendered = [];
-    arr.forEach(function (item) {
+    arr.forEach(function (item, i) {
       var frag = tpl.content.cloneNode(true);
       var nodes = Array.prototype.slice.call(frag.childNodes);
-      nodes.forEach(function (n) { if (n.nodeType === 1) walk(n, item); });
+      nodes.forEach(function (n) { if (n.nodeType === 1) walk(n, item, itemsBase + "." + i); });
       nodes.forEach(function (n) { node.appendChild(n); if (n.nodeType === 1) node.__rendered.push(n); });
     });
   }
 
-  function walk(node, ctx) {
+  function walk(node, ctx, base) {
     if (node.nodeType !== 1) return;
-    if (node.hasAttribute("data-repeat")) { processRepeat(node, ctx); return; }
-    applyTo(node, ctx);
+    if (node.hasAttribute("data-repeat")) { processRepeat(node, ctx, base); return; }
+    applyTo(node, ctx, base);
     var child = node.firstElementChild;
     while (child) {
       var next = child.nextElementSibling;
-      if (child.tagName !== "TEMPLATE") walk(child, ctx);
+      if (child.tagName !== "TEMPLATE") walk(child, ctx, base);
       child = next;
     }
   }
@@ -87,7 +97,7 @@
   window.DSBind = {
     render: function (content, root) {
       CURRENT = content || {};
-      walk(root || document.body, CURRENT);
+      walk(root || document.body, CURRENT, "");
     }
   };
 })();

@@ -14,21 +14,37 @@
 
   /* ---- глубокое слияние объектов ---- */
   function isObj(v) { return v && typeof v === "object" && !Array.isArray(v); }
+  // Глубокое слияние с корректной поддержкой массивов (для списков услуг и т.п.)
   function deepMerge(base, over) {
-    var out = Array.isArray(base) ? base.slice() : Object.assign({}, base);
-    for (var k in over) {
-      if (!Object.prototype.hasOwnProperty.call(over, k)) continue;
-      if (isObj(out[k]) && isObj(over[k])) out[k] = deepMerge(out[k], over[k]);
-      else out[k] = over[k];
+    if (Array.isArray(base) && Array.isArray(over)) {
+      var arr = base.slice();
+      for (var i = 0; i < over.length; i++) {
+        if (over[i] == null) continue; // пропуски в массиве не затирают исходное
+        arr[i] = deepMerge(base[i], over[i]);
+      }
+      return arr;
     }
-    return out;
+    if (isObj(base) && isObj(over)) {
+      var out = Object.assign({}, base);
+      for (var k in over) {
+        if (!Object.prototype.hasOwnProperty.call(over, k)) continue;
+        if (over[k] == null) continue;
+        out[k] = deepMerge(k in base ? base[k] : undefined, over[k]);
+      }
+      return out;
+    }
+    return over;
   }
-  function clone(o) { return JSON.parse(JSON.stringify(o)); }
   function getPath(o, p) { return p.split(".").reduce(function (a, k) { return a == null ? a : a[k]; }, o); }
   function setPath(o, p, v) {
-    var keys = p.split("."), last = keys.pop();
-    var t = keys.reduce(function (a, k) { if (a[k] == null) a[k] = {}; return a[k]; }, o);
-    t[last] = v;
+    var keys = p.split(".");
+    var t = o;
+    for (var i = 0; i < keys.length - 1; i++) {
+      var k = keys[i];
+      if (t[k] == null) t[k] = /^\d+$/.test(keys[i + 1]) ? [] : {};
+      t = t[k];
+    }
+    t[keys[keys.length - 1]] = v;
   }
 
   /* ---- состояние ---- */
@@ -36,18 +52,44 @@
   var overrides = {};
   try { overrides = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch (e) {}
   var content = deepMerge(base, overrides);
+  var editMode = false;
 
-  function saveOverride(path, value) {
+  function saveOverride(path, value, skipRender) {
     setPath(overrides, path, value);
     setPath(content, path, value);
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(overrides)); } catch (e) {}
-    rerender();
+    if (!skipRender) rerender();
   }
 
   function rerender() {
     applyTheme();
     if (typeof window.renderSite === "function") window.renderSite(content);
     refreshToggleStates();
+    if (editMode) applyEditMode();
+  }
+
+  /* ---- режим редактирования текста прямо на странице ---- */
+  function applyEditMode() {
+    var nodes = document.querySelectorAll("#site [data-fullpath]");
+    Array.prototype.forEach.call(nodes, function (el) {
+      if (editMode) {
+        el.setAttribute("contenteditable", "true");
+        el.classList.add("cz-editing");
+        if (!el.__editHooked) {
+          el.__editHooked = true;
+          el.addEventListener("blur", function () {
+            var p = el.getAttribute("data-fullpath");
+            if (p) saveOverride(p, el.textContent.replace(/\s+/g, " ").trim(), true);
+          });
+          el.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); el.blur(); }
+          });
+        }
+      } else {
+        el.removeAttribute("contenteditable");
+        el.classList.remove("cz-editing");
+      }
+    });
   }
 
   /* ---- тема / цвета ---- */
@@ -189,6 +231,24 @@
     head.appendChild(close);
 
     var body = el("div", { class: "cz-body" });
+
+    // Режим редактирования текста на странице
+    var editGroup = el("div", { class: "cz-group" });
+    editGroup.appendChild(el("h3", null, "Тексты на странице"));
+    var editBtn = el("button", { class: "cz-btn primary", style: "width:100%" }, "✏️ Редактировать текст");
+    editBtn.addEventListener("click", function () {
+      editMode = !editMode;
+      editBtn.textContent = editMode ? "✓ Готово" : "✏️ Редактировать текст";
+      editBtn.classList.toggle("primary", !editMode);
+      editBtn.classList.toggle("ghost", editMode);
+      applyEditMode();
+      if (editMode) panel.classList.remove("open");
+    });
+    editGroup.appendChild(editBtn);
+    editGroup.appendChild(el("p", { class: "cz-mini" },
+      "Включите и кликайте по любому тексту на сайте (заголовки, услуги, цены, отзывы) — и меняйте его. Enter — применить."));
+    body.appendChild(editGroup);
+
     body.appendChild(group("Бренд", TEXT_FIELDS_BRAND));
     body.appendChild(group("Главный экран", TEXT_FIELDS_HERO));
     body.appendChild(colorsGroup());
