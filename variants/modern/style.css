@@ -16,7 +16,7 @@
   --radius: 22px;
   --shadow: 0 18px 50px -20px rgba(60,40,30,.30);
   --font-display: "Comic CAT", "Unbounded", system-ui, sans-serif;
-  --font-body: "Rubik", "Manrope", system-ui, sans-serif;
+  --font-body: "Comic CAT", "Rubik", "Manrope", system-ui, sans-serif;
 }
 body { font-family: var(--font-body); color: var(--c-text); background: var(--c-bg); }
 .section { padding: 90px 0; }
