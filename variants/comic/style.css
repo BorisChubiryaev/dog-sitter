@@ -4,15 +4,7 @@
    Фирменный шрифт — Comic CAT (Vitaly Lazarenko), подключён ниже.
    ===================================================================== */
 
-/* Фирменный шрифт Comic CAT (кириллица + латиница) */
-@font-face {
-  font-family: "Comic CAT";
-  src: url("../../assets/fonts/ComicCAT.woff2") format("woff2"),
-       url("../../assets/fonts/ComicCAT.otf") format("opentype");
-  font-weight: 400 800;
-  font-display: swap;
-}
-
+/* Шрифт Comic CAT подключён в общем base.css */
 :root {
   /* Фирменная палитра (из Figma) */
   --c-primary: #FFD6D1;   /* нежно-розовый */

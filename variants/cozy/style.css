@@ -16,8 +16,8 @@
   --line: #efe2d2;
   --radius: 20px;
   --shadow: 0 20px 45px -24px rgba(90,60,30,.45);
-  --font-display: "Spectral", Georgia, serif;
-  --font-body: "Nunito", system-ui, sans-serif;
+  --font-display: "Comic CAT", "Spectral", Georgia, serif;
+  --font-body: "Rubik", "Nunito", system-ui, sans-serif;
 }
 body { font-family: var(--font-body); color: var(--c-text); background: var(--c-bg); }
 .section { padding: 86px 0; }
@@ -113,7 +113,7 @@ body { font-family: var(--font-body); color: var(--c-text); background: var(--c-
 /* отзывы */
 .reviews-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 24px; }
 .review { margin: 0; background: var(--c-surface); border-radius: var(--radius); padding: 30px; border: 1px solid var(--line); box-shadow: 0 10px 30px -24px rgba(90,60,30,.5); }
-.review blockquote { margin: 0 0 18px; font-size: 16px; line-height: 1.65; font-family: var(--font-display); font-style: italic; }
+.review blockquote { margin: 0 0 18px; font-size: 16px; line-height: 1.65; }
 .review figcaption { font-weight: 700; }
 .review-paw { margin-right: 6px; }
 
@@ -123,5 +123,5 @@ body { font-family: var(--font-body); color: var(--c-text); background: var(--c-
 .socials { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 30px 0; }
 .socials a { text-decoration: none; color: #f6ead9; border: 1px solid rgba(255,255,255,.22); padding: 11px 20px; border-radius: 12px; font-weight: 600; transition: background .2s; }
 .socials a:hover { background: rgba(255,255,255,.1); }
-.footer-slogan { font-family: var(--font-display); font-style: italic; font-size: 22px; color: var(--c-primary); margin: 14px 0 4px; }
+.footer-slogan { font-family: var(--font-display); font-size: 24px; color: var(--c-primary); margin: 14px 0 4px; }
 .footer-city { opacity: .6; margin: 0; }

@@ -3,6 +3,15 @@
    (сброс, панель настроек ⚙, слоты под фото, утилиты)
    ===================================================================== */
 
+/* Фирменный шрифт Comic CAT (кириллица + латиница), доступен во всех вариантах */
+@font-face {
+  font-family: "Comic CAT";
+  src: url("../fonts/ComicCAT.woff2") format("woff2"),
+       url("../fonts/ComicCAT.otf") format("opentype");
+  font-weight: 400 800;
+  font-display: swap;
+}
+
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {

@@ -49,9 +49,10 @@
 
 ### Фирменный шрифт Comic CAT
 
-Уже подключён в комиксовом варианте (файлы `assets/fonts/ComicCAT.woff2` и `.otf`,
-`@font-face` в `variants/comic/style.css`). Автор шрифта — Vitaly Lazarenko,
-бесплатен для коммерческого использования.
+Подключён во **всех вариантах** и на витрине (файлы `assets/fonts/ComicCAT.woff2`
+и `.otf`, `@font-face` в общем `assets/css/base.css`). Используется в заголовках,
+текст набран шрифтом Rubik. Автор шрифта — Vitaly Lazarenko, бесплатен для
+коммерческого использования.
 
 ### Фирменные цвета
 
