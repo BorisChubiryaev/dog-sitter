@@ -72,28 +72,11 @@
               <template><li data-text=".">пункт</li></template>
             </ul>
             <div class="card-warn" data-text="note"></div>
+            <button class="btn-more js-more" type="button">Подробнее</button>
           </article>
         </template>
       </div>
       <p class="services-note" data-text="servicesNote"></p>
-    </div>
-  </section>
-
-  <!-- ПОРЯДОК ПЕРЕДЕРЖКИ -->
-  <section class="section steps" data-section="services">
-    <div class="container steps-grid">
-      <div>
-        <h2 class="sec-title" data-text="steps.title">Как проходит передержка</h2>
-        <ol class="steps-list" data-repeat="steps.items">
-          <template><li data-text=".">шаг</li></template>
-        </ol>
-      </div>
-      <div class="bring">
-        <h3 data-text="steps.bring.title">Что взять с собой</h3>
-        <ul class="bring-list" data-repeat="steps.bring.items">
-          <template><li data-text=".">вещь</li></template>
-        </ul>
-      </div>
     </div>
   </section>
 
@@ -175,6 +158,7 @@
 <script src="../../assets/js/content.js"></script>
 <script src="../../assets/js/bind.js"></script>
 <script src="../../assets/js/customizer.js"></script>
+<script src="../../assets/js/modal.js"></script>
 <script>
   window.renderSite = function (content) {
     DSBind.render(content, document.getElementById("site"));

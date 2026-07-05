@@ -28,6 +28,65 @@ button { font: inherit; cursor: pointer; }
 .container { width: min(1140px, 92vw); margin-inline: auto; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
+/* Мелкие элементы фирменным шрифтом (--font-display задан в каждом варианте) */
+.btn, .badge, .price-tag, .price-extra, .nav-phone, .academy-badge, .btn-more {
+  font-family: var(--font-display, inherit);
+}
+
+/* ---------- Кнопка «Подробнее» ---------- */
+.btn-more {
+  display: inline-block; margin-top: 18px; cursor: pointer;
+  font-weight: 700; font-size: 15px; padding: 10px 20px; border-radius: 12px;
+  background: transparent; color: var(--c-text, #222);
+  border: 2px solid color-mix(in srgb, var(--c-text, #222) 22%, transparent);
+  transition: transform .15s, border-color .15s, background .15s;
+}
+.btn-more:hover { transform: translateY(-2px); border-color: var(--c-text, #222); }
+.card { display: flex; flex-direction: column; }
+.card .btn-more { align-self: flex-start; margin-top: auto; }
+.card .card-points { margin-bottom: 6px; }
+/* ценники-пилюли жмутся по содержимому, а не тянутся на всю ширину карточки */
+.card .price-tag, .card .price-extra { align-self: flex-start; }
+
+/* ---------- Модальное окно ---------- */
+.ds-modal {
+  position: fixed; inset: 0; z-index: 10000;
+  display: grid; place-items: center; padding: 20px;
+  background: rgba(20,15,10,.5); backdrop-filter: blur(3px);
+  opacity: 0; transition: opacity .2s ease;
+}
+.ds-modal.open { opacity: 1; }
+.ds-modal[hidden] { display: none; }
+.ds-modal__box {
+  position: relative; width: min(620px, 100%); max-height: 86vh; overflow-y: auto;
+  background: var(--c-surface, #fff); color: var(--c-text, #222);
+  border-radius: 22px; padding: 34px 34px 30px;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,.5);
+  transform: translateY(12px) scale(.98); transition: transform .22s ease;
+}
+.ds-modal.open .ds-modal__box { transform: none; }
+.ds-modal__close {
+  position: absolute; top: 14px; right: 14px; width: 38px; height: 38px;
+  border: none; border-radius: 50%; background: rgba(0,0,0,.06);
+  font-size: 17px; color: #333; line-height: 1;
+}
+.ds-modal__close:hover { background: rgba(0,0,0,.12); }
+.ds-modal__title { font-family: var(--font-display, inherit); font-size: clamp(24px, 4vw, 32px); margin: 0 6px 6px 0; }
+.ds-modal__body { line-height: 1.6; }
+.ds-modal__body .m-lead { color: color-mix(in srgb, var(--c-primary, #888) 45%, #000); font-weight: 700; margin: 0 0 18px; font-size: 17px; }
+.ds-modal__body h4 { font-family: var(--font-display, inherit); font-size: 18px; margin: 22px 0 10px; }
+.ds-modal__body ol.m-steps { counter-reset: ms; list-style: none; padding: 0; margin: 0; }
+.ds-modal__body ol.m-steps li { counter-increment: ms; position: relative; padding: 10px 0 10px 46px; border-bottom: 1px solid rgba(0,0,0,.08); }
+.ds-modal__body ol.m-steps li::before {
+  content: counter(ms); position: absolute; left: 0; top: 8px; width: 30px; height: 30px;
+  border-radius: 50%; background: var(--c-text, #222); color: #fff;
+  display: grid; place-items: center; font-weight: 700; font-size: 14px;
+}
+.ds-modal__body ul.m-bring { list-style: none; padding: 0; margin: 0; }
+.ds-modal__body ul.m-bring li { position: relative; padding: 7px 0 7px 26px; }
+.ds-modal__body ul.m-bring li::before { content: "✓"; position: absolute; left: 0; color: var(--c-text, #222); font-weight: 800; }
+.ds-modal__body .m-empty { color: #777; font-size: 16px; margin: 6px 0 0; }
+
 /* ---------- СЛОТ ПОД ФОТО ----------
    Если в content.js у элемента не задано фото (img: ""),
    показывается красивая заглушка с подписью. */

@@ -91,7 +91,9 @@ body { font-family: var(--font-body); color: var(--c-text); background: var(--c-
 @media (max-width: 780px){ .steps-grid { grid-template-columns: 1fr; } }
 
 /* стандарт заботы */
-.care-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 22px; }
+.care-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+@media (max-width: 760px){ .care-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px){ .care-grid { grid-template-columns: 1fr; } }
 .care-item { padding: 28px; border-radius: var(--radius); background: var(--c-surface); border: 1px solid var(--line); }
 .care-icon { width: 52px; height: 52px; display: grid; place-items: center; font-size: 26px; background: var(--c-accent); border-radius: 14px; }
 .care-item:nth-child(even) .care-icon { background: var(--c-primary); }
